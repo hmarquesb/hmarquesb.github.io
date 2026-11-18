@@ -1,0 +1,1026 @@
+/* ==========================================================================
+   sections.css — estilos específicos de cada seção, na ordem da página
+   1. Início  2. Trajetória  3. Trabalho  4. Valores  5. Fechamento
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. INÍCIO
+   ========================================================================== */
+.hero {
+  padding-top: var(--s-8);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: var(--s-7);
+  align-items: end;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  /* Entrada: o título aparece primeiro, antes dos fios serem desenhados */
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__lead {
+  margin-top: var(--s-6);
+  max-width: 36ch;
+  font-size: var(--fs-1);
+  line-height: 1.5;
+  animation: rise 0.9s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-6);
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  color: var(--ink-soft);
+}
+
+.hero__facts li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* Um pequeno ponto azul antes de cada fato, como um nó no fio */
+.hero__facts li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--thread-build);
+}
+
+.hero__photo {
+  max-width: 340px;
+  justify-self: end;
+  width: 100%;
+}
+
+/* As duas portas: mesmo tamanho, mesmo peso. De cada uma sai um fio. */
+.doors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+}
+
+.door {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-6);
+  border-radius: var(--r-panel);
+  color: var(--c-whip);
+  text-decoration: none;
+}
+
+.door--build {
+  background: var(--c-space);
+}
+
+.door--care {
+  background: var(--c-brick);
+}
+
+.door__title {
+  font-size: var(--fs-3);
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+.door__text {
+  max-width: 44ch;
+}
+
+.door__cta {
+  margin-top: auto;
+  padding-top: var(--s-3);
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.door:hover .door__cta {
+  text-decoration-thickness: 2px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title,
+  .hero__lead { animation: none; }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    padding-top: var(--s-6);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+
+  .hero__photo {
+    justify-self: start;
+    max-width: 220px;
+  }
+
+  .doors {
+    grid-template-columns: 1fr;
+    margin-top: var(--s-7);
+  }
+
+  .door {
+    padding: var(--s-5);
+  }
+}
+
+
+/* ==========================================================================
+   2. TRAJETÓRIA — os dois fios
+   Os fios saem das portas (.braid), descem ao lado do título e viram a
+   linha do tempo. Colunas: ano | fios | texto.
+   - .lanes desenha os dois fios retos, de cima a baixo do elemento
+   - cada marco tem um ponto no seu fio (azul ou vermelho)
+   - nos marcos "both", os fios se encontram num nó
+   As posições dos fios (--lane-a e --lane-b) estão em tokens.css.
+   ========================================================================== */
+.traj {
+  padding-top: 0;
+}
+
+/* Dos fios das portas até a linha do tempo. main.js calcula o desenho. */
+.braid {
+  display: block;
+  width: 100%;
+  height: 200px;
+  overflow: visible;
+}
+
+.braid path {
+  fill: none;
+  stroke-width: var(--thread-w);
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.5s 0.5s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
+
+.braid__build { stroke: var(--thread-build); }
+.braid__care { stroke: var(--thread-care); }
+.braid path.braid__care { animation-delay: 0.75s; }
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Régua invisível: main.js lê daqui a posição dos fios em pixels */
+.braid__probe {
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  width: var(--lane-a);
+  padding-left: var(--lane-b);
+  box-sizing: content-box;
+}
+
+.traj__flow {
+  position: relative;
+}
+
+/* Os dois fios retos, como fundo do elemento */
+.lanes {
+  background:
+    linear-gradient(var(--thread-care) 0 0) var(--lane-a) 0 / var(--thread-w) 100% no-repeat,
+    linear-gradient(var(--thread-build) 0 0) var(--lane-b) 0 / var(--thread-w) 100% no-repeat;
+}
+
+.traj__head {
+  padding: var(--s-4) 0 var(--s-7) calc(var(--year-col) + var(--spine-col));
+}
+
+.traj__head .section__title {
+  margin-top: 0;
+}
+
+.traj__head .section__lead {
+  max-width: 44ch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-5);
+  margin-top: var(--s-5);
+  padding: 0;
+  list-style: none;
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  color: var(--ink-soft);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.legend__item::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend__item--build::before { background: var(--thread-build); }
+.legend__item--care::before { background: var(--thread-care); }
+.legend__item--both::before {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(90deg, var(--thread-care) 50%, var(--thread-build) 50%);
+}
+
+.timeline {
+  --dot-y: 31px;  /* altura do centro dos pontos: alinha com a 1ª linha do texto */
+  --knot-h: 62px; /* altura do desenho do nó (2 x --dot-y) */
+  list-style: none;
+  padding: 0;
+  max-width: 920px;
+}
+
+.tl {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--year-col) var(--spine-col) minmax(0, 1fr);
+  padding-block: var(--s-4);
+  min-height: var(--knot-h);
+  background:
+    linear-gradient(var(--thread-care) 0 0) var(--lane-a) 0 / var(--thread-w) 100% no-repeat,
+    linear-gradient(var(--thread-build) 0 0) var(--lane-b) 0 / var(--thread-w) 100% no-repeat;
+}
+
+.tl__year {
+  font-size: var(--fs-1);
+  line-height: 1.3;
+  color: var(--ink-soft);
+  text-align: right;
+  padding-right: var(--s-4);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.tl__body {
+  grid-column: 3;
+  max-width: 56ch;
+}
+
+.tl__body > * + * {
+  margin-top: var(--s-2);
+}
+
+/* Ponto do marco, sobre o fio dele */
+.tl::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--dot-y) - 9.5px);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  box-sizing: content-box;
+}
+
+.tl[data-thread="care"]::before {
+  left: calc(var(--lane-a) + var(--thread-w) / 2 - 9.5px);
+  background: var(--thread-care);
+}
+
+.tl[data-thread="build"]::before {
+  left: calc(var(--lane-b) + var(--thread-w) / 2 - 9.5px);
+  background: var(--thread-build);
+}
+
+/* Nó: os dois fios se curvam, se encontram e voltam cada um para o seu lado.
+   O desenho das curvas é uma máscara (23 x 62 px); as cores vêm do fundo,
+   metade vermelha e metade azul. Abaixo do nó, os fios retos continuam. */
+.tl[data-thread="both"] {
+  background-position: var(--lane-a) var(--knot-h), var(--lane-b) var(--knot-h);
+  background-size: var(--thread-w) calc(100% - var(--knot-h));
+}
+
+.tl[data-thread="both"]::before {
+  top: 0;
+  left: var(--lane-a);
+  width: calc(var(--lane-gap) + var(--thread-w));
+  height: var(--knot-h);
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--thread-care) 50%, var(--thread-build) 50%);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23' height='62'%3E%3Cpath d='M1.5 0C1.5 17 11.5 14 11.5 31S1.5 45 1.5 62M21.5 0C21.5 17 11.5 14 11.5 31S21.5 45 21.5 62' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 23px 62px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23' height='62'%3E%3Cpath d='M1.5 0C1.5 17 11.5 14 11.5 31S1.5 45 1.5 62M21.5 0C21.5 17 11.5 14 11.5 31S21.5 45 21.5 62' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") 0 0 / 23px 62px no-repeat;
+}
+
+/* A conta do nó: metade de cada cor */
+.tl[data-thread="both"]::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--dot-y) - 11.5px);
+  left: calc(var(--lane-a) + (var(--lane-gap) + var(--thread-w)) / 2 - 11.5px);
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  box-sizing: content-box;
+  background: linear-gradient(90deg, var(--thread-care) 50%, var(--thread-build) 50%);
+}
+
+/* O último marco fecha a linha: os fios terminam amarrados */
+.tl:last-child {
+  background: none;
+}
+
+.tl:last-child::before {
+  height: var(--dot-y);
+}
+
+@media (max-width: 860px) {
+  /* Sem as portas lado a lado, os fios começam direto na linha do tempo */
+  .braid {
+    display: none;
+  }
+
+  .traj {
+    padding-top: var(--s-8);
+  }
+
+  .traj__head {
+    padding: 0 0 var(--s-6);
+    background: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .tl__year {
+    font-size: var(--fs--1);
+    line-height: 2.2;
+    padding-right: var(--s-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .braid path { stroke-dashoffset: 0; animation: none; }
+}
+
+/* Lista completa de prêmios (recolhida) */
+.awards {
+  margin-top: var(--s-8);
+  border-top: 1px solid var(--c-whip-line);
+  border-bottom: 1px solid var(--c-whip-line);
+}
+
+.awards summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-5);
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--f-sans);
+  font-weight: 600;
+}
+
+.awards summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Um "+" que vira "−" ao abrir */
+.awards summary::after {
+  content: "+";
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.awards[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.awards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-7);
+  padding-bottom: var(--s-6);
+  font-size: var(--fs--1);
+  line-height: 1.55;
+}
+
+.awards__title {
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+  margin: var(--s-5) 0 var(--s-2);
+}
+
+.awards__grid > div > .awards__title:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 860px) {
+  .awards__grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+}
+
+
+
+/* ==========================================================================
+   3. TRABALHO
+   ========================================================================== */
+.section--build {
+  padding-top: var(--s-6);
+}
+
+/* Engenharia de IA: o painel de destaque, antes dos projetos */
+.ia {
+  --ink-soft: var(--c-mist);
+  --focus: var(--c-whip);
+  padding: var(--s-8) var(--s-7) var(--s-7);
+  border-radius: var(--r-panel);
+  background: var(--c-space);
+  color: var(--c-whip);
+}
+
+.ia__title {
+  font-size: var(--fs-hero);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.ia__lead {
+  margin-top: var(--s-5);
+  max-width: 40ch;
+  font-size: var(--fs-2);
+  line-height: 1.35;
+}
+
+.ia__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-6);
+  margin-top: var(--s-8);
+}
+
+.ia__item {
+  padding-top: var(--s-4);
+  border-top: var(--thread-w) solid var(--c-steel);
+}
+
+.ia__item h4 {
+  font-family: var(--f-sans);
+  font-size: var(--fs-0);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ia__item p {
+  margin-top: var(--s-3);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.ia + .subsection {
+  margin-top: var(--s-9);
+}
+
+@media (max-width: 860px) {
+  .ia {
+    padding: var(--s-6) var(--s-5);
+  }
+
+  .ia__lead {
+    font-size: var(--fs-1);
+  }
+
+  .ia__grid {
+    grid-template-columns: 1fr;
+    margin-top: var(--s-6);
+  }
+}
+
+/* ---- Projetos de estudo -------------------------------------------------
+   Cada projeto: selo e título, a frase, o print grande (a melhor prova de
+   que o projeto existe) e, embaixo, dois
+   blocos. À esquerda a história, para ler; à direita números e links, para
+   agir. */
+.project {
+  margin-top: var(--s-8);
+  padding-top: var(--s-7);
+  border-top: var(--thread-w) solid var(--thread-build);
+}
+
+.project__head > * + * {
+  margin-top: var(--s-4);
+}
+
+.project__head > .project__title {
+  margin-top: var(--s-3);
+}
+
+.project__title {
+  font-size: var(--fs-4);
+  font-weight: 450;
+  letter-spacing: -0.02em;
+}
+
+.project__tagline {
+  font-size: var(--fs-1);
+  line-height: 1.5;
+  max-width: 58ch;
+}
+
+.project__tagline strong {
+  font-weight: 600;
+}
+
+/* O print ocupa a largura toda da página, sem passar das margens.
+   A proporção vem do próprio print (--ratio no HTML; 16:10 por padrão). */
+.project__media {
+  width: 100%;
+  margin-block: var(--s-7);
+}
+
+.project__media.photo--screen {
+  aspect-ratio: var(--ratio, 16 / 10);
+  box-shadow:
+    0 0 0 1px var(--c-whip-line),
+    0 30px 60px -36px color-mix(in srgb, var(--c-space) 45%, transparent);
+}
+
+/* Os dois blocos embaixo do print */
+.project__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: var(--s-7) var(--s-8);
+  align-items: start;
+}
+
+.project__main > * + *,
+.project__aside > * + * {
+  margin-top: var(--s-6);
+}
+
+/* Bloco da direita: uma linha fina o separa da história */
+.project__aside {
+  padding-left: var(--s-6);
+  border-left: 1px solid var(--c-whip-line);
+}
+
+/* Na coluna estreita, os números ficam um embaixo do outro */
+.project__aside .metrics {
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+}
+
+/* Caixa de contexto (o que é o Ayurveda) */
+.context {
+  padding: var(--s-5);
+  border-radius: var(--r-panel);
+  background: var(--c-whip-deep);
+}
+
+.context__title {
+  margin: 0;
+  font-family: var(--f-sans);
+  font-size: var(--fs-0);
+  font-weight: 600;
+}
+
+.context p {
+  margin-top: var(--s-2);
+}
+
+/* A história: um item embaixo do outro, com linha confortável de ler */
+.project__story {
+  max-width: 62ch;
+}
+
+.project__story > div + div {
+  margin-top: var(--s-5);
+}
+
+.project__story dt {
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+}
+
+.project__story dd {
+  margin-top: var(--s-1);
+  color: var(--ink-soft);
+}
+
+.project__next {
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--r-chip);
+  background: var(--c-whip-deep);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.project__note {
+  color: var(--ink-soft);
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.project__links + .fineprint {
+  margin-top: var(--s-3);
+}
+
+@media (max-width: 860px) {
+  .project__media {
+    margin-block: var(--s-6);
+  }
+
+  .project__cols {
+    grid-template-columns: 1fr;
+  }
+
+  .project__aside {
+    padding-left: 0;
+    padding-top: var(--s-6);
+    border-left: 0;
+    border-top: 1px solid var(--c-whip-line);
+  }
+
+  .project__aside .metrics {
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  }
+}
+
+
+
+
+
+/* ==========================================================================
+   4. VALORES — fundo claro (blush); o vermelho fica nos títulos dos valores
+   ========================================================================== */
+.section--care {
+  --bg: var(--c-blush);
+  background: var(--c-blush);
+}
+
+.section--care .photo {
+  background: color-mix(in srgb, var(--c-blush-line) 55%, var(--c-blush));
+}
+
+.section--care .photo.is-empty::after {
+  border-color: var(--c-blush-line);
+}
+
+.section--care .plain-list li {
+  border-bottom-color: var(--c-blush-line);
+}
+
+.fll {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-7);
+  align-items: center;
+}
+
+/* As três partes do torneio: robô, pesquisa e core values */
+.fll__parts > div {
+  padding-left: var(--s-4);
+  border-left: var(--thread-w) solid var(--thread-care);
+}
+
+.fll__parts > div + div {
+  margin-top: var(--s-4);
+}
+
+.fll__parts dt {
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+}
+
+.fll__parts dt i {
+  font-style: normal;
+}
+
+.fll__parts dd {
+  margin-top: var(--s-1);
+  line-height: 1.55;
+}
+
+/* As duas fotos da equipe, uma embaixo da outra: a FLL e a equipe de hoje */
+.fll__photos > * + * {
+  margin-top: var(--s-5);
+}
+
+.fll__now figcaption {
+  margin-top: var(--s-3);
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+/* Foto de equipe é horizontal: ganha a coluna maior */
+.fll .fll__photo {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+/* Os valores: uma linha para cada um. O nome do valor é o que se lê primeiro. */
+.values {
+  margin-top: var(--s-8);
+}
+
+.value {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--s-3) var(--s-8);
+  align-items: start;
+  padding-block: var(--s-6);
+  border-top: 1px solid var(--thread-care);
+}
+
+.value dt {
+  font-size: var(--fs-4);
+  font-weight: 450;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--c-brick);
+  text-wrap: balance;
+}
+
+.value dd {
+  max-width: 44ch;
+  padding-top: 0.35rem;
+  font-size: var(--fs-1);
+  line-height: 1.5;
+}
+
+/* Valor espelhado: texto à esquerda, nome à direita (quebra o ritmo da lista) */
+.value--flip {
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+}
+
+.value--flip dt {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.value--flip dd {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* CosmoCup: a história em destaque, no meio dos valores.
+   A foto ocupa a largura toda do cartão, em cima, sem cortar ninguém das
+   pontas; embaixo, título à esquerda e texto à direita. */
+.story {
+  margin-block: var(--s-6) var(--s-8);
+  border-radius: var(--r-panel);
+  background: var(--c-whip);
+  overflow: hidden;
+}
+
+.story .photo {
+  background: var(--c-whip-deep);
+}
+
+.story .photo.is-empty::after {
+  border-color: var(--c-whip-line);
+}
+
+.story__media {
+  border-radius: 0;
+  aspect-ratio: 3 / 2;
+}
+
+/* A foto é 4:3; em 3:2 o corte sai do teto do palco, não da faixa de baixo */
+.story__media img {
+  object-position: 50% 25%;
+}
+
+.story__body {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-5) var(--s-8);
+  padding: var(--s-7);
+}
+
+/* O CosmoCup, recortado sem fundo, embaixo do título */
+.story__object {
+  display: block;
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+  margin-top: var(--s-7);
+  filter: drop-shadow(0 14px 18px color-mix(in srgb, var(--c-space) 22%, transparent));
+}
+
+.story__text > * + * {
+  margin-top: var(--s-4);
+}
+
+.story__kicker {
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.story__title {
+  font-size: var(--fs-3);
+  font-weight: 450;
+  margin-top: var(--s-2);
+}
+
+.story__lesson {
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--c-whip-line);
+  font-style: italic;
+  font-size: var(--fs-1);
+  line-height: 1.45;
+  color: var(--c-brick);
+}
+
+.story + .values {
+  margin-top: 0;
+}
+
+/* Ação social */
+.community {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--s-8);
+  margin-top: var(--s-7);
+  padding-top: var(--s-8);
+  border-top: 1px solid var(--thread-care);
+  align-items: start;
+}
+
+.community__more {
+  padding: var(--s-6);
+  border-radius: var(--r-panel);
+  background: var(--c-whip);
+}
+
+.community__more .plain-list li {
+  border-bottom-color: var(--c-whip-line);
+}
+
+.community__label {
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  font-weight: 600;
+  margin-bottom: var(--s-3);
+}
+
+.community__more .plain-list {
+  font-size: var(--fs--1);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .fll,
+  .story__body,
+  .value,
+  .value--flip,
+  .community {
+    grid-template-columns: 1fr;
+    gap: var(--s-6);
+  }
+
+  .value--flip dt,
+  .value--flip dd {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .value {
+    gap: var(--s-3);
+    padding-block: var(--s-5);
+  }
+
+  .value dd {
+    font-size: var(--fs-0);
+  }
+
+  .fll .fll__photo {
+    max-width: none;
+  }
+
+  .story__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .story__body {
+    gap: var(--s-4);
+    padding: var(--s-6) var(--s-5);
+  }
+}
+
+
+/* ==========================================================================
+   5. FECHAMENTO E CONTATO — fundo azul profundo
+   ========================================================================== */
+.closing {
+  --ink: var(--c-whip);
+  --ink-soft: var(--c-mist);
+  --focus: var(--c-whip);
+  background: var(--c-space);
+  color: var(--ink);
+  padding-block: var(--s-9);
+}
+
+.closing__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: var(--s-8);
+  align-items: start;
+}
+
+.closing__title,
+.closing__contact-title {
+  font-size: var(--fs-3);
+  font-weight: 450;
+  margin-bottom: var(--s-5);
+}
+
+.closing__letter {
+  max-width: var(--measure);
+}
+
+.closing__letter p + p {
+  margin-top: var(--s-4);
+}
+
+.closing__letter p {
+  font-size: var(--fs-1);
+  line-height: 1.55;
+}
+
+.closing__sign {
+  font-style: italic;
+  color: var(--c-steel);
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  font-size: var(--fs-1);
+}
+
+.contact-list li {
+  padding-block: var(--s-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-steel) 35%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.closing__place {
+  margin-top: var(--s-5);
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 860px) {
+  .closing {
+    padding-block: var(--s-8);
+  }
+
+  .closing__grid {
+    grid-template-columns: 1fr;
+  }
+}

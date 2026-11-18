@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Helena Marques Batista</title>
+  <meta name="description" content="Helena Marques Batista: construo software com IA e acredito que tecnologia só importa quando chega até as pessoas. Ciência da Computação na UFRJ, estágio na Globo e pós em Engenharia de IA.">
+  <meta name="theme-color" content="#003049">
+
+  <!-- Prévia ao compartilhar o link (LinkedIn, WhatsApp). Troque a imagem em assets/img/og-image.jpg (1200x630). -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Helena Marques Batista">
+  <meta property="og:description" content="Construir e cuidar: engenharia de IA, Globo, UFRJ e uma vida inteira de robótica.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fontes hospedadas no próprio site: Literata (texto e títulos) e Bricolage Grotesque (detalhes). Ver docs/DESIGN.md -->
+  <link rel="preload" href="assets/fonts/literata-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Ordem importa: fontes → tokens → base → layout → componentes → seções -->
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+
+  <script src="assets/js/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- =====================================================================
+       CABEÇALHO E MENU
+       ===================================================================== -->
+  <header class="site-header" data-header>
+    <div class="wrap site-header__inner">
+      <a class="site-header__name" href="#inicio">Helena Marques Batista</a>
+      <nav aria-label="Seções do site">
+        <ul class="nav">
+          <li><a href="#trajetoria" data-nav>Trajetória</a></li>
+          <li><a href="#trabalho" data-nav>Trabalho</a></li>
+          <li><a href="#valores" data-nav>Valores</a></li>
+          <li><a href="#contato" data-nav>Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- =====================================================================
+         1. INÍCIO
+         As duas "portas" têm o mesmo peso: trabalho (azul) e valores
+         (vermelho). De cada uma sai um fio. Os fios descem, se cruzam e
+         viram a linha do tempo da Trajetória, logo abaixo.
+         ===================================================================== -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <h1 class="hero__title" id="hero-title">Quem sou eu?</h1>
+          <p class="hero__lead">
+            Me chamo Helena. Construo software com inteligência artificial e aprendi, numa equipe de robótica
+            ainda na escola, que tecnologia só vale a pena quando chega até as pessoas.
+          </p>
+          <ul class="hero__facts" aria-label="Em resumo">
+            <li>Ciência da Computação na UFRJ</li>
+            <li>Estagiária de desenvolvimento na Globo</li>
+            <li>Pós em Engenharia de IA</li>
+            <li>Técnica da equipe de robótica FrancoDroid</li>
+          </ul>
+        </div>
+
+        <figure class="photo photo--arch hero__photo" data-photo data-hint="Seu retrato, vertical (4:5). Arquivo: assets/img/helena-retrato.jpg">
+          <img src="assets/img/helena-retrato.jpg" alt="Helena sorrindo" width="800" height="1000">
+        </figure>
+      </div>
+
+      <div class="wrap">
+        <div class="doors">
+          <a class="door door--build" href="#trabalho">
+            <h2 class="door__title">O que eu construo</h2>
+            <p class="door__text">
+              Sistemas com LLMs: um assistente com RAG que levei de 69% para 91% de acerto,
+              um agente de recomendações ayurvédicas com ferramentas e memória, e apps para Roku na Globo.
+            </p>
+            <span class="door__cta">Ver meu trabalho</span>
+          </a>
+          <a class="door door--care" href="#valores">
+            <h2 class="door__title">No que eu acredito</h2>
+            <p class="door__text">
+              <i lang="en">Gracious professionalism</i>, inovação que inclui e conhecimento passado adiante.
+              Aprendi isso na FIRST LEGO League e pratico como técnica da equipe e, todo mês,
+              acolhendo famílias do Santa Marta.
+            </p>
+            <span class="door__cta">Ver meus valores</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         2. TRAJETÓRIA — os dois fios juntos
+         Cada item tem data-thread="build" (azul), "care" (vermelho) ou
+         "both" (os fios se amarram num nó).
+         Para acrescentar um marco, copie um <li> e mude o ano, o texto e o fio.
+         ===================================================================== -->
+    <section class="section traj" id="trajetoria" aria-labelledby="trajetoria-title">
+      <div class="wrap traj__flow">
+        <!-- Os fios saem das portas e chegam à linha do tempo. O desenho é
+             calculado em main.js (depende da largura da tela). -->
+        <svg class="braid" data-braid aria-hidden="true" focusable="false">
+          <path class="braid__build" pathLength="1" />
+          <path class="braid__care" pathLength="1" />
+        </svg>
+        <span class="braid__probe" data-braid-probe aria-hidden="true"></span>
+
+        <header class="traj__head lanes">
+          <h2 class="section__title" id="trajetoria-title">Trajetória</h2>
+          <p class="section__lead">
+            Dois fios que sempre andaram juntos na minha vida: <strong>construir</strong> e <strong>cuidar</strong>.
+          </p>
+          <ul class="legend" aria-label="Legenda">
+            <li class="legend__item legend__item--build">Construir: estudo, pesquisa e trabalho</li>
+            <li class="legend__item legend__item--care">Cuidar: pessoas, equipe e comunidade</li>
+            <li class="legend__item legend__item--both">Nó: os dois ao mesmo tempo</li>
+          </ul>
+        </header>
+
+        <ol class="timeline">
+          <li class="tl" data-thread="both">
+            <span class="tl__year">2017</span>
+            <div class="tl__body"><p>Entro na FrancoDroid como membro da equipe.</p></div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2017–19</span>
+            <div class="tl__body"><p>Três medalhas de ouro seguidas na Matemática sem Fronteiras, etapa nacional.</p></div>
+          </li>
+          <li class="tl" data-thread="both">
+            <span class="tl__year">2018</span>
+            <div class="tl__body"><p>1º lugar geral em Estratégia e Inovação no FLL Open Invitational da Europa Central.</p></div>
+          </li>
+          <li class="tl" data-thread="both">
+            <span class="tl__year">2019</span>
+            <div class="tl__body">
+              <p><strong>1º lugar mundial no Global Innovation Award</strong> da FIRST LEGO League, com o CosmoCup, e prêmio de 20 mil dólares.</p>
+              <p>2º lugar geral no Aberto Internacional do Líbano.</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="care">
+            <span class="tl__year">2020</span>
+            <div class="tl__body"><p>Viro mentora da equipe: coordeno projetos, treino os membros e traduzo apresentações para o inglês.</p></div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2021</span>
+            <div class="tl__body">
+              <p>Medalha de ouro na Olimpíada Brasileira de Astronomia.</p>
+              <p>1º lugar internacional em Design do Robô no FLL Virtual Open Invitational, entre 200 equipes.</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="care">
+            <span class="tl__year">2022</span>
+            <div class="tl__body"><p>Viro técnica da FrancoDroid, orientando as novas gerações.</p></div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2022</span>
+            <div class="tl__body"><p>Entro em Ciência da Computação na UFRJ.</p></div>
+          </li>
+          <li class="tl" data-thread="care">
+            <span class="tl__year">2023</span>
+            <div class="tl__body"><p>A equipe leva o 1º lugar de Equipe Internacional na final nacional do Reino Unido.</p></div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2024</span>
+            <div class="tl__body"><p>Iniciação científica em GSVD na UFRJ.</p></div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2025</span>
+            <div class="tl__body">
+              <p>Estágio na Empresa de Pesquisa Energética.</p>
+              <p>Em dezembro, começo na Globo, desenvolvendo para Roku.</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="care">
+            <span class="tl__year">2025</span>
+            <div class="tl__body">
+              <p>Como técnica, vejo a equipe levar o 2º lugar geral e o prêmio Solução Robótica no WRO Nacional e, depois, o <strong>bronze no WRO Open Championship Américas</strong>, no Panamá, com o Vivalt.</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="build">
+            <span class="tl__year">2026</span>
+            <div class="tl__body">
+              <p>Começo a pós em Engenharia de IA e construo o Chapa e o Ritu, meus dois projetos de estudo.</p>
+              <p>Na Globo, participo da implementação de um fluxo de desenvolvimento guiado por specs (SDD).</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="care">
+            <span class="tl__year">2026</span>
+            <div class="tl__body">
+              <p>No WRO Nacional, as equipes da FrancoDroid sobem ao pódio: 3º lugar geral e prêmio Solução Robótica no Sênior, 2º lugar geral e prêmio Espírito de Equipe no Júnior.</p>
+            </div>
+          </li>
+          <li class="tl" data-thread="both">
+            <span class="tl__year">Hoje</span>
+            <div class="tl__body"><p>Construo com IA no trabalho e na pós, sigo como técnica da FrancoDroid e, todo mês, ajudo a acolher famílias do Santa Marta.</p></div>
+          </li>
+        </ol>
+
+        <!-- Lista completa de prêmios: fica recolhida para não pesar a página -->
+        <details class="awards">
+          <summary>Ver todos os prêmios e medalhas</summary>
+          <div class="awards__grid">
+            <div>
+              <h3 class="awards__title">Robótica</h3>
+              <ul class="plain-list">
+                <li>2026: 3º lugar geral e prêmio Solução Robótica, WRO Nacional (Future Innovators Sênior); 2º lugar geral e prêmio Espírito de Equipe, WRO Nacional (Future Innovators Júnior)</li>
+                <li>2025: Bronze, WRO Open Championship Américas, Panamá (Future Innovators Sênior); 2º lugar geral e prêmio Solução Robótica, WRO Nacional</li>
+                <li>2023: 1º lugar Equipe Internacional, FLL Nacional Reino Unido; 4º lugar Design do Robô</li>
+                <li>2022: 2º lugar geral, FLL Regional; 4º lugar Projeto de Inovação, FLL Nacional</li>
+                <li>2021: 1º lugar Design do Robô e 3º lugar Desafio do Robô, FLL Virtual Open Invitational</li>
+                <li>2020: 1º lugar geral, FLL Regional; 3º lugar Processo de Pesquisa, FLL Nacional; 3º lugar geral, FLL Virtual Open Invitational</li>
+                <li>2019: 1º lugar geral e 1º lugar People's Choice, Global Innovation Award; 2º lugar geral e 3º lugar Desafio do Robô, FLL Open International Lebanon; 2º lugar Inspiração, FLL Nacional; 1º lugar Sumô Lego Pro, Terceiro Tech Challenge</li>
+                <li>2018: 1º lugar Estratégia e Inovação, FLL Open Invitational Central Europe; 1º lugar geral e 1º lugar Desafio do Robô, FLL Regional; 2º lugar Trabalho em Equipe, FLL Nacional; vários pódios em sumô e seguidor de linha</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="awards__title">Olimpíadas de conhecimento</h3>
+              <ul class="plain-list">
+                <li>Ouro: Olimpíada Brasileira de Astronomia (2021), Mostra Brasileira de Foguetes (2020), Matemática sem Fronteiras (2017, 2018 e 2019)</li>
+                <li>Prata: Mostra Brasileira de Foguetes (2021), Canguru de Matemática (2019)</li>
+                <li>Bronze: Olimpíada Nacional de Ciências (2021), Canguru de Matemática (2018), Olimpíada de Matemática do Estado do Rio de Janeiro (2015)</li>
+              </ul>
+              <h3 class="awards__title">Patentes</h3>
+              <ul class="plain-list">
+                <li>Coautora de 4 patentes de projetos da FrancoDroid: CosmoCup, coletor menstrual para missões espaciais; SCAF, app que monta trajetos com trechos a pé ou de bicicleta; Bounce Box, caixa antissísmica que reduz o desperdício no transporte de alimentos; e Vivalt, plataforma elevatória com reconhecimento de voz para idosos</li>
+              </ul>
+              <h3 class="awards__title">Na mídia</h3>
+              <ul class="plain-list">
+                <li>Episódios do Estúdio Maker e da Turma da Robótica, no Canal Futura</li>
+                <li>Apresentação do projeto de pesquisa no Estúdio i, da GloboNews</li>
+              </ul>
+              <h3 class="awards__title">Idiomas</h3>
+              <ul class="plain-list">
+                <li>Inglês avançado (CCAA) e francês B1 (DELF, Alliance Française)</li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         3. TRABALHO (fio azul)
+         ===================================================================== -->
+    <section class="section section--build" id="trabalho" aria-labelledby="trabalho-title">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="thread-mark thread-mark--build" aria-hidden="true"></span>
+          <h2 class="section__title" id="trabalho-title">O que eu construo</h2>
+          <p class="section__lead">
+            Quero construir software para produtos de inteligência artificial. Estes são os projetos
+            e os lugares onde venho aprendendo a fazer isso bem: medindo, documentando as decisões e entregando.
+          </p>
+        </header>
+
+        <!-- 3.1 Engenharia de IA: o painel de destaque -------------------->
+        <div class="ia" aria-labelledby="ia-title">
+          <h3 class="ia__title" id="ia-title">Engenharia de IA</h3>
+          <p class="ia__lead">
+            É o que eu estudo, o que uso todos os dias no trabalho e o que construo por conta própria.
+          </p>
+          <div class="ia__grid">
+            <div class="ia__item">
+              <h4>Na pós-graduação</h4>
+              <p>
+                Engenharia de IA na Coders University, desde 2026. Cada módulo vira código: RAG, memória e avaliação;
+                desenvolvimento guiado por specs (SDD); redes neurais do zero; agentes com ferramentas,
+                aprovação humana e evals.
+              </p>
+            </div>
+            <div class="ia__item">
+              <h4>No trabalho, na Globo</h4>
+              <p>
+                Uso IA no dia a dia do desenvolvimento e participo da implementação de um fluxo de SDD
+                no trabalho: a spec vem primeiro, e o código é escrito e revisado a partir dela.
+              </p>
+            </div>
+            <div class="ia__item">
+              <h4>Nos meus projetos</h4>
+              <p>
+                No Chapa e no Ritu, logo abaixo, uso na prática o que a pós ensina: RAG com busca híbrida e
+                avaliação no Chapa; um agente com ferramentas, memória e observabilidade no Ritu.
+                E meço o resultado antes e depois de cada mudança.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Projetos de estudo ----------------------------------------->
+        <div class="subsection" aria-labelledby="projetos-title">
+          <div class="subsection__intro">
+            <h3 class="subsection__title" id="projetos-title">Dois projetos de estudo</h3>
+            <p>
+              Construí os dois para aprender e para pôr à prova o que vejo na pós. Não são produtos comerciais:
+              são o meu laboratório, com código aberto e demonstração para quem quiser testar.
+            </p>
+          </div>
+
+          <!-- Projeto: Chapa ----------------------------------------------
+               Ordem: selo e título, frase, print grande, e embaixo dois blocos:
+               à esquerda a história, à direita os números e os links. -->
+          <article class="project" aria-labelledby="chapa-title">
+            <header class="project__head">
+              <p class="study">Projeto de estudo</p>
+              <h4 class="project__title" id="chapa-title">Chapa</h4>
+              <p class="project__tagline">
+                <strong>Um assistente com RAG para restaurantes parceiros de um app de delivery.</strong>
+                Responde dúvidas sobre repasse, comissão e cancelamentos, cita a fonte e recusa o que está fora do escopo.
+              </p>
+            </header>
+
+            <figure class="photo photo--screen project__media" data-photo data-hint="Print ou GIF da demo do Chapa. Arquivo: assets/img/chapa-demo.png">
+              <img src="assets/img/chapa-demo.png" alt="Tela do Chapa respondendo uma pergunta de um restaurante e citando a fonte" loading="lazy" width="1280" height="800">
+            </figure>
+
+            <div class="project__cols">
+              <dl class="project__story">
+                <div>
+                  <dt>O problema</dt>
+                  <dd>As mesmas dúvidas se repetem, e as respostas estão espalhadas em páginas diferentes.</dd>
+                </div>
+                <div>
+                  <dt>O que eu fiz</dt>
+                  <dd>
+                    RAG híbrido (embeddings mais busca por palavras em português), memória de conversa e
+                    guardrails na entrada e na saída. Trabalhei guiada por specs (no meio do caminho passei a usar o OpenSpec):
+                    cada mudança implementada por um agente de código, revisada e integrada por PR com CI.
+                    As decisões ficaram registradas em 28 ADRs.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Como medi</dt>
+                  <dd>
+                    Um conjunto de avaliação com 73 perguntas (45 que ele deve responder, 16 que deve recusar e 12 de conversa),
+                    mudando uma variável por vez. A maior virada foi mandar ao modelo o documento inteiro, e não só o trecho encontrado, já que são documentos curtos.
+                  </dd>
+                </div>
+              </dl>
+
+              <div class="project__aside">
+                <ul class="metrics" aria-label="Resultados da avaliação, do contexto por trecho para o contexto por documento">
+                  <li class="metric">
+                    <span class="metric__value">69% <span class="metric__arrow" aria-hidden="true">para</span> 91%</span>
+                    <span class="metric__label">de acerto nas respostas</span>
+                  </li>
+                  <li class="metric">
+                    <span class="metric__value">27% <span class="metric__arrow" aria-hidden="true">para</span> 7%</span>
+                    <span class="metric__label">de falsa recusa</span>
+                  </li>
+                  <li class="metric">
+                    <span class="metric__value">100%</span>
+                    <span class="metric__label">de recusa correta fora do escopo</span>
+                  </li>
+                </ul>
+
+                <ul class="tags" aria-label="Tecnologias">
+                  <li>Next.js</li><li>TypeScript</li><li>Postgres + pgvector</li><li>Supabase</li>
+                  <li>Gemini</li><li>Vercel</li><li>Vitest</li><li>GitHub Actions</li>
+                </ul>
+
+                <p class="project__links">
+                  <a class="button button--build" href="https://chapa-mu.vercel.app" target="_blank" rel="noopener">Abrir a demo</a>
+                  <a class="button button--ghost" href="https://github.com/hmarquesb/chapa" target="_blank" rel="noopener">Ver o código</a>
+                </p>
+                <p class="fineprint">Sem afiliação com nenhuma empresa de delivery.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto: Ritu ----------------------------------------------->
+          <article class="project" aria-labelledby="ritu-title">
+            <header class="project__head">
+              <p class="study">Projeto de estudo</p>
+              <h4 class="project__title" id="ritu-title">Ritu</h4>
+              <p class="project__tagline">
+                <strong>Um agente de recomendações baseado no Ayurveda.</strong>
+                Você diz como está agora e recebe algo para fazer já: um chá, uma refeição simples, uma prática.
+                Com o que você tem em casa, levando em conta o seu dosha e o clima do momento onde você mora.
+              </p>
+            </header>
+
+            <!-- O print do Ritu é 16:9 (1280x720); o do Chapa é 16:10 -->
+            <figure class="photo photo--screen project__media" style="--ratio: 16 / 9" data-photo data-hint="Print da tela do Ritu. Arquivo: assets/img/ritu-demo.png">
+              <img src="assets/img/ritu-demo.png" alt="Tela de entrada do Ritu, com uma ilustração de ervas e especiarias e o botão para testar com um perfil de demonstração" loading="lazy" width="1280" height="720">
+            </figure>
+
+            <div class="project__cols">
+              <div class="project__main">
+                <!-- Contexto para quem nunca ouviu falar de Ayurveda -->
+                <div class="context">
+                  <h5 class="context__title">O que é o Ayurveda</h5>
+                  <p>
+                    É o sistema tradicional de saúde da Índia. Para ele, o que faz bem a cada pessoa depende da sua
+                    constituição (o dosha, uma combinação de Vata, Pitta e Kapha), de como ela está no momento e do
+                    clima. <i lang="sa-Latn">Ritu</i> quer dizer “estação” em sânscrito.
+                  </p>
+                </div>
+
+                <dl class="project__story">
+                  <div>
+                    <dt>O que ele mostra</dt>
+                    <dd>
+                      Um agente num loop de ferramentas que decide sozinho quando consultar o clima (Open-Meteo)
+                      e a despensa. Memória em três níveis, pausa para perguntar quando falta informação, um juiz
+                      como guardrail de saída e uma tela “Como pensei” com o rastro de cada passo.
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+
+              <div class="project__aside">
+                <p class="project__note">Para teste, um perfil de demonstração que já cai direto numa recomendação, sem cadastro.</p>
+
+                <ul class="tags" aria-label="Tecnologias">
+                  <li>Mastra</li><li>Next.js</li><li>TypeScript</li><li>Zod</li><li>Supabase</li><li>Open-Meteo</li>
+                </ul>
+
+                <p class="project__links">
+                  <!-- TODO: antes de publicar, trocar pelos links reais da demo e do repositório do Ritu -->
+                  <a class="button button--build" href="#" target="_blank" rel="noopener">Abrir a demo</a>
+                  <a class="button button--ghost" href="https://github.com/hmarquesb" target="_blank" rel="noopener">Ver o código</a>
+                </p>
+                <p class="fineprint">Não é orientação médica.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 3.3 Globo -------------------------------------------------------->
+        <div class="subsection subsection--split" aria-labelledby="globo-title">
+          <div class="subsection__intro">
+            <h3 class="subsection__title" id="globo-title">Globo</h3>
+            <p class="when">Estagiária de desenvolvimento, desde dezembro de 2025</p>
+            <figure class="photo intro__photo" data-photo data-hint="Você na Globo. Arquivo: assets/img/globo.jpeg">
+              <img src="assets/img/globo.jpeg" alt="Helena em frente ao letreiro da Globo, nos jardins dos Estúdios Globo" loading="lazy" width="960" height="1280">
+            </figure>
+          </div>
+          <div class="prose">
+            <p>
+              Desenvolvo o app da Globo para a plataforma Roku, em BrightScript e SceneGraph, dentro da área de streaming
+              de um dos maiores ecossistemas de mídia da América Latina. Trabalho no ciclo inteiro: implementação, testes e deploy.
+            </p>
+            <p>
+              Uso IA no dia a dia do desenvolvimento e participo da implementação de um fluxo de SDD
+              (desenvolvimento guiado por specs) no trabalho. É a mesma forma de trabalhar que pratico na pós
+              e nos meus projetos, agora dentro de um time e de um produto de verdade.
+            </p>
+            <p>
+              Toda semana participo, em inglês, de uma reunião técnica com um representante da Roku, fazendo a ponte entre as
+              práticas do nosso time e as da plataforma.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3.4 UFRJ + iniciação científica -------------------------------->
+        <div class="subsection subsection--split" aria-labelledby="ufrj-title">
+          <div class="subsection__intro">
+            <h3 class="subsection__title" id="ufrj-title">UFRJ e pesquisa em GSVD</h3>
+            <p class="when">Ciência da Computação, formatura prevista para dezembro de 2026</p>
+            <p>
+              <a href="https://arxiv.org/abs/2603.10283" target="_blank" rel="noopener">Ler o artigo no arXiv</a>
+            </p>
+            <p>
+              <a href="https://github.com/hmarquesb/gsvd-embeddings" target="_blank" rel="noopener">Ver o experimento no GitHub</a>
+            </p>
+            <!-- Exemplos do experimento: o grau que o ângulo da GSVD deu a cada imagem -->
+            <div class="gsvd-pair">
+              <figure class="gsvd-pair__item">
+                <div class="photo gsvd-pair__photo" data-photo data-hint="Imagem do cão. Arquivo: assets/img/gsvd-cao-41.png">
+                  <img src="assets/img/gsvd-cao-41.png" alt="Foto de baixa resolução de um cachorro lulu-da-pomerânia laranja" loading="lazy" width="169" height="167">
+                </div>
+                <figcaption>41 graus – cão</figcaption>
+              </figure>
+              <figure class="gsvd-pair__item">
+                <div class="photo gsvd-pair__photo" data-photo data-hint="Imagem do gato. Arquivo: assets/img/gsvd-gato-50.png">
+                  <img src="assets/img/gsvd-gato-50.png" alt="Foto de baixa resolução de um gato siamês sentado na grama" loading="lazy" width="169" height="167">
+                </div>
+                <figcaption>50 graus – gato</figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="prose">
+            <p>
+              Na iniciação científica (2024 a 2025), estudei a Decomposição em Valores Singulares Generalizada, a GSVD.
+              Ela compara dois conjuntos de dados pela geometria: separa as direções que eles compartilham das que são
+              só de um deles.
+            </p>
+            <p>
+              Dessa iniciação científica nasceu um artigo. Participei de todo o processo de estudo que levou a ele;
+              só não entrei na escrita porque comecei o estágio na EPE e não consegui conciliar os dois.
+              A partir da GSVD, o grupo propôs um ângulo que diz se uma amostra se explica mais por um conjunto
+              de dados ou pelo outro.
+            </p>
+            <p>
+              Isso conversa direto com machine learning, porque redes neurais transformam dados em vetores num mesmo
+              espaço. Depois da iniciação científica, implementei o método por conta própria e o testei em embeddings
+              de uma ResNet18, passo que o artigo deixou como trabalho futuro. Sem treinar nada, o ângulo separa cães
+              de gatos com 98% de acerto, quase o mesmo que um classificador treinado.
+            </p>
+            <p>
+              O que mais me empolga é o meio-termo. Cada imagem ganha um grau: perto de 0° ela se parece com os gatos,
+              perto de 90° com os cães, e em torno de 45° tem um pouco dos dois. Assim fica fácil separar as imagens
+              que estão em cima do muro, e a resposta vem da geometria dos próprios dados, não de um modelo treinado.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3.5 EPE --------------------------------------------------------->
+        <div class="subsection subsection--split" aria-labelledby="epe-title">
+          <div class="subsection__intro">
+            <h3 class="subsection__title" id="epe-title">Empresa de Pesquisa Energética</h3>
+            <p class="when">Estagiária de desenvolvimento e dados, de abril a novembro de 2025</p>
+          </div>
+          <div class="prose">
+            <p>
+              Construí em Python (Shiny e Pandas) uma aplicação web para visualizar os resultados de modelos de planejamento
+              energético. Validei os dados contra os do modelo, cuidei do build e do deploy e escrevi os guias que fizeram
+              o time adotar a ferramenta.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         4. VALORES (fio vermelho) — fundo claro, títulos em vermelho
+         ===================================================================== -->
+    <section class="section section--care" id="valores" aria-labelledby="valores-title">
+      <div class="wrap">
+        <header class="section__head">
+          <span class="thread-mark thread-mark--care" aria-hidden="true"></span>
+          <h2 class="section__title" id="valores-title">No que eu acredito</h2>
+          <p class="section__lead">
+            Eu era muito tímida. A robótica me colocou para apresentar pesquisa em inglês para juízes de outros países,
+            consertar robô com o relógio correndo e confiar na equipe. Foi ali que eu me encontrei, e é de lá que vêm
+            os valores que levo para qualquer trabalho.
+          </p>
+        </header>
+
+        <!-- 4.1 A FIRST LEGO League ---------------------------------------->
+        <div class="fll">
+          <div class="prose">
+            <h3 class="subsection__title">De onde eles vêm: a FIRST LEGO League</h3>
+            <p>É um torneio de robótica para estudantes, em três partes:</p>
+            <dl class="fll__parts">
+              <div>
+                <dt>Robô</dt>
+                <dd>A equipe constrói e programa um robô para resolver missões na mesa, contra o relógio.</dd>
+              </div>
+              <div>
+                <dt>Pesquisa</dt>
+                <dd>A equipe estuda um problema real e cria uma solução inovadora para ajudar as pessoas.</dd>
+              </div>
+              <div>
+                <dt><i lang="en">Core values</i></dt>
+                <dd>A equipe é avaliada pelo jeito como trabalha: trabalho em equipe, descoberta, inovação, impacto e inclusão.</dd>
+              </div>
+            </dl>
+            <p>
+              Entrei na FrancoDroid, a equipe do Liceu Franco-Brasileiro, em 2017. Fui membro, depois mentora e, desde 2022,
+              sou técnica. Quase uma década na mesma equipe, e ela continua me ensinando.
+            </p>
+          </div>
+          <div class="fll__photos">
+            <figure class="photo photo--wide fll__photo" data-photo data-hint="Você com a equipe na FLL, na horizontal. Arquivo: assets/img/robotica-equipe.jpg">
+              <img src="assets/img/robotica-equipe.jpg" alt="Helena com a equipe FrancoDroid na FLL Brasil." loading="lazy" width="1280" height="702">
+            </figure>
+            <!-- Foto mais recente: a equipe de hoje, com a Helena como técnica -->
+            <figure class="fll__now">
+              <div class="photo photo--wide fll__photo" data-photo data-hint="Você com a equipe que treina hoje. Arquivo: assets/img/robotica-equipe-wro.jpg">
+                <img src="assets/img/robotica-equipe-wro.jpg" alt="Helena com a equipe FrancoDroid na WRO Brasil, segurando a bandeira da equipe" loading="lazy" width="1024" height="683">
+              </div>
+              <figcaption>Hoje, como técnica, com a equipe na WRO Brasil (World Robot Olympiad), outro torneio de robótica.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- 4.2 Os valores, nas minhas palavras: o centro da seção -------->
+        <h3 class="sr-only">O que ficou comigo</h3>
+        <dl class="values">
+          <div class="value">
+            <dt lang="en">Gracious professionalism</dt>
+            <dd>
+              Criado pelo Dr. Woodie Flowers, conselheiro da FIRST, o conceito significa competir com máxima <strong>intensidade</strong>
+              e <strong>desempenho</strong>, mas mantendo o <strong>respeito</strong>, a <strong>gentileza</strong> e a <strong>valorização</strong> do próximo. O adversário é o problema,
+              nunca a outra equipe: emprestar uma peça para quem está do outro lado é normal.
+            </dd>
+          </div>
+          <!-- Espelhado: o nome do valor fica à direita -->
+          <div class="value value--flip">
+            <dt>Inovação que inclui</dt>
+            <dd>
+              Nossos projetos mais bonitos nasceram de quem estava sendo esquecido: mulheres que querem ir ao espaço,
+              alunos surdos na aula de música. E competindo no Líbano, na Europa Central, no Reino Unido e no Panamá,
+              vi equipes resolverem o mesmo desafio de jeitos que eu nunca teria imaginado. Incluir começa por escutar
+              antes de propor.
+            </dd>
+          </div>
+        </dl>
+
+        <!-- 4.3 CosmoCup: a história que mais representa ------------------>
+        <article class="story" aria-labelledby="cosmocup-title">
+          <figure class="photo story__media" data-photo data-hint="Equipe no Global Innovation Award 2019. Arquivo: assets/img/robotica-gia-2019.jpg">
+            <img src="assets/img/robotica-gia-2019.jpg" alt="Equipe FrancoDroid no Global Innovation Award de 2019" loading="lazy" width="1280" height="960">
+          </figure>
+          <div class="story__body">
+            <div class="story__head">
+              <p class="story__kicker">Global Innovation Award, 2019</p>
+              <h3 class="story__title" id="cosmocup-title">O coletor menstrual que foi pensado para o espaço</h3>
+              <img class="story__object" src="assets/img/cosmo-cup-recorte.webp" alt="Dois protótipos do CosmoCup impressos em 3D" loading="lazy" width="720" height="506">
+            </div>
+            <div class="story__text">
+            <p>
+              O tema da temporada era a vida no espaço. Descobrimos que uma astronauta levava, em média,
+              3.600 absorventes numa missão, e que muitas mulheres não podem usar a pílula para suspender a menstruação.
+              Criamos o CosmoCup, um coletor menstrual pensado para a gravidade zero, que não gera lixo na nave.
+            </p>
+            <p>
+              Entre mais de 40 mil equipes de 74 países, ficamos com o 1º lugar mundial e com o voto do público.
+              Fomos a primeira equipe do Brasil a ganhar o prêmio, de 20 mil dólares para investir no projeto.
+              O CosmoCup também virou patente, a primeira das quatro de que sou coautora.
+            </p>
+            <p class="story__lesson">
+              Uma equipe de escola do Rio resolveu um problema das astronautas e ganhou do mundo inteiro.
+              Desde então eu acredito em sonhar grande, e em começar perguntando quem está ficando de fora.
+            </p>
+            </div>
+          </div>
+        </article>
+
+        <dl class="values">
+          <div class="value">
+            <dt>Conhecimento se passa adiante</dt>
+            <dd>
+              Como técnica, ensino Python, engenharia de robôs, escrita científica e documentação. Hoje vejo as novas
+              gerações fazendo por elas o que a equipe fez por mim.
+            </dd>
+          </div>
+        </dl>
+
+        <!-- 4.4 Ação social ------------------------------------------------>
+        <div class="community">
+          <div class="community__main prose">
+            <h3 class="subsection__title">Todo mês, com famílias do Santa Marta</h3>
+            <p>
+              No meu centro espírita, recebemos todo mês famílias da comunidade Santa Marta que vivem em situação de
+              vulnerabilidade social. Ajudo a organizar e distribuir o café da manhã, o almoço e as cestas básicas,
+              e conduzo atividades de convivência, como rodas de conversa e momentos com música.
+            </p>
+            <p>
+              O mais importante é o ambiente: um lugar acolhedor, de escuta e de apoio emocional.
+              Aprendi ali que ajudar começa por escutar.
+            </p>
+          </div>
+          <div class="community__more">
+            <h4 class="community__label">Outras ações de que participei</h4>
+            <ul class="plain-list">
+              <li>Mutirões de limpeza nas praias da Zona Sul</li>
+              <li>Banho de Cidadania: café, corte de cabelo e roupas para pessoas em situação de rua</li>
+              <li>Gastromotiva: servir refeições num restaurante sem fins lucrativos</li>
+              <li>Arrecadação de absorventes para meninas da Casa de Acolhida do Catete</li>
+              <li>Campanha de rua contra a poliomielite e o sarampo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         5. FECHAMENTO E CONTATO
+         ===================================================================== -->
+    <section class="closing" id="contato" aria-labelledby="closing-title">
+      <div class="wrap closing__grid">
+        <div class="closing__letter">
+          <h2 class="closing__title" id="closing-title">Sobre esta nova era</h2>
+          <p>
+            Vejo muitas pessoas que programam vivendo um luto com a IA, porque ela está mudando justamente a parte do trabalho
+            de que elas mais gostam. Eu entendo, de verdade. Mas esse nunca foi o meu caso.
+          </p>
+          <p>
+            Minha paixão começou pela matemática, pela lógica e pela inovação. O código foi o jeito que encontrei de juntar
+            tudo isso. Por isso estou amando este momento: meu trabalho não vai acabar, vai mudar. E na engenharia de IA,
+            matemática, lógica e inovação estão mais fortes do que nunca.
+          </p>
+          <p class="closing__sign">Helena</p>
+        </div>
+
+        <div class="closing__contact">
+          <h2 class="closing__contact-title">Vamos conversar?</h2>
+          <ul class="contact-list">
+            <li><a href="mailto:hmarquesb@gmail.com">hmarquesb@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/in/hmarquesb" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://github.com/hmarquesb" target="_blank" rel="noopener">GitHub</a></li>
+            <!-- TODO: liberar quando o currículo atualizado (1 página, sem CPF) estiver em assets/docs/
+            <li><a href="assets/docs/curriculo-helena-marques-batista.pdf" download>Currículo em PDF</a></li>
+            -->
+          </ul>
+          <p class="closing__place">Rio de Janeiro</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>
+        Feito à mão em HTML, CSS e um pouco de JavaScript, com ajuda de IA.
+        <a href="https://github.com/hmarquesb/hmarquesb.github.io" target="_blank" rel="noopener">Ver o código deste site</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

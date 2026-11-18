@@ -1,0 +1,226 @@
+/* ==========================================================================
+   layout.css — estrutura da página: largura, cabeçalho, seções, rodapé
+   ========================================================================== */
+
+/* Container centralizado com margem lateral responsiva */
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---- Cabeçalho fixo ---------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--c-whip) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* main.js adiciona .is-scrolled depois que a página rola um pouco */
+.site-header.is-scrolled {
+  border-bottom-color: var(--c-whip-line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  min-height: 4rem;
+}
+
+.site-header__name {
+  font-family: var(--f-serif);
+  font-weight: 600;
+  font-size: var(--fs-0);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: var(--s-5);
+  list-style: none;
+  padding: 0;
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-block: var(--s-2);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.nav a:hover,
+.nav a[aria-current="true"] {
+  color: var(--ink);
+  border-bottom-color: currentColor;
+}
+
+/* No celular, o nome vai em cima e o menu rola na horizontal (sem rolar a página) */
+@media (max-width: 860px) {
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-block: var(--s-2);
+  }
+
+  .site-header nav {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav {
+    gap: var(--s-4);
+  }
+}
+
+/* ---- Seções ------------------------------------------------------------ */
+.section {
+  padding-block: var(--s-9);
+}
+
+.section__head {
+  max-width: var(--measure);
+  margin-bottom: var(--s-8);
+}
+
+.section__title {
+  font-size: var(--fs-4);
+  font-weight: 450;
+  letter-spacing: -0.015em;
+  margin-top: var(--s-4);
+}
+
+.section__lead {
+  margin-top: var(--s-5);
+  font-size: var(--fs-1);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.subsection + .subsection {
+  margin-top: var(--s-9);
+}
+
+.subsection__title {
+  font-size: var(--fs-2);
+  font-weight: 500;
+}
+
+.subsection__intro {
+  max-width: var(--measure);
+}
+
+.subsection__intro > * + * {
+  margin-top: var(--s-4);
+}
+
+/* Foto pequena no espaço livre embaixo do título (ex.: Globo).
+   A foto original é vertical; aqui aparece recortada em 4:3, em volta da pessoa. */
+.intro__photo {
+  max-width: 20.3rem;  /* em telas largas, termina junto com "dezembro" na linha de cima */
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-panel);
+}
+
+.subsection__intro > .intro__photo {
+  margin-top: var(--s-5);
+}
+
+.intro__photo img {
+  object-position: 50% 68%;
+}
+
+/* Bloco de duas colunas: título à esquerda, texto à direita */
+.subsection--split {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: var(--s-6) var(--s-8);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--c-whip-line);
+}
+
+@media (max-width: 860px) {
+  .section {
+    padding-block: var(--s-8);
+  }
+
+  .subsection--split {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Texto corrido com espaçamento entre parágrafos */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: var(--s-4);
+}
+
+.prose .subsection__title + * {
+  margin-top: var(--s-5);
+}
+
+/* ---- Rodapé ------------------------------------------------------------ */
+.site-footer {
+  background: var(--c-space);
+  color: var(--c-steel);
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  padding-block: var(--s-5) var(--s-6);
+  border-top: 1px solid color-mix(in srgb, var(--c-steel) 30%, transparent);
+}
+
+.site-footer a {
+  color: var(--c-whip);
+}
+
+/* Imagens do experimento GSVD, embaixo do título da UFRJ:
+   uma embaixo da outra, o cão à esquerda e o gato à direita */
+.gsvd-pair {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 22.15rem;  /* termina junto com "GSVD" no título */
+  margin-top: var(--s-7);
+}
+
+.gsvd-pair__item {
+  width: 10.5rem;
+}
+
+.gsvd-pair__item + .gsvd-pair__item {
+  justify-self: end;
+}
+
+.gsvd-pair__photo {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-panel);
+}
+
+.gsvd-pair__item figcaption {
+  margin-top: var(--s-2);
+  font-family: var(--f-sans);
+  font-size: var(--fs--1);
+  line-height: 1.3;
+  color: var(--ink-soft);
+  text-align: center;
+  white-space: nowrap;
+}

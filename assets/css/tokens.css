@@ -1,0 +1,86 @@
+/* ==========================================================================
+   tokens.css — decisões de design em um só lugar
+   --------------------------------------------------------------------------
+   Para mudar a cara do site, comece por aqui. Os outros arquivos CSS só
+   usam estas variáveis; evite colocar cores ou tamanhos "soltos" neles.
+   Detalhes e porquês em docs/DESIGN.md.
+   ========================================================================== */
+
+:root {
+  /* ---- Paleta base (escolhida pela Helena) ------------------------------ */
+  --c-lava: #780000;   /* molten lava: vermelho escuro, só em detalhes (hover) */
+  --c-brick: #c1121f;  /* brick red: o fio "cuidar" (pessoas, valores) */
+  --c-whip: #fdf0d5;   /* papaya whip: o "papel" do site */
+  --c-space: #003049;  /* deep space blue: texto e o fio "construir" */
+  --c-steel: #669bbc;  /* steel blue: apoio do azul, detalhes sobre fundos escuros */
+
+  /* ---- Derivadas (tons da mesma família, para hierarquia) --------------- */
+  --c-whip-deep: #f6e1b5;   /* painéis e destaques sobre o papel */
+  --c-whip-line: #e6cf9f;   /* linhas finas sobre o papel */
+  --c-space-soft: #2f5266;  /* texto secundário sobre o papel (contraste AA) */
+  --c-blush: #fbe7d6;       /* fundo da seção de valores: o papel com um pouco do vermelho */
+  --c-blush-line: #eec3aa;  /* linhas finas sobre o blush */
+  --c-mist: #c9d9e3;        /* texto secundário sobre o azul profundo */
+
+  /* ---- Papéis semânticos ------------------------------------------------ */
+  --bg: var(--c-whip);
+  --ink: var(--c-space);
+  --ink-soft: var(--c-space-soft);
+  --thread-build: var(--c-space);  /* fio azul: construir */
+  --thread-care: var(--c-brick);   /* fio vermelho: cuidar */
+  --focus: var(--c-brick);
+
+  /* ---- Tipografia ------------------------------------------------------- */
+  --f-serif: "Literata", "Iowan Old Style", Georgia, serif;
+  --f-sans: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+
+  /* Escala modular de razão 1,25 a partir de 18px (texto corrido). */
+  --fs--2: 0.72rem;
+  --fs--1: 0.9rem;
+  --fs-0: 1.125rem;
+  --fs-1: 1.406rem;
+  --fs-2: 1.758rem;
+  --fs-3: 2.197rem;
+  --fs-4: clamp(2.4rem, 1.6rem + 3.4vw, 3.6rem);
+  --fs-hero: clamp(3rem, 1.8rem + 5.6vw, 6.2rem);
+
+  --lh-body: 1.65;   /* serifada pede um pouco mais de entrelinha */
+  --lh-tight: 1.08;
+  --measure: 66ch;   /* largura máxima de uma linha de texto */
+
+  /* ---- Espaço ----------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  --gutter: clamp(16px, 4vw, 48px);  /* margem lateral da página */
+  --page-max: 1180px;
+
+  /* ---- Formas ----------------------------------------------------------- */
+  /* Raio varia com a hierarquia: arco nas fotos, médio nos painéis, pequeno em selos. */
+  --r-arch: 999px 999px 18px 18px;
+  --r-panel: 22px;
+  --r-chip: 6px;
+
+  --thread-w: 3px;  /* espessura dos fios */
+
+  /* ---- Linha do tempo: onde passam os dois fios -------------------------- */
+  --year-col: 8.5rem;   /* coluna dos anos */
+  --spine-col: 4rem;    /* coluna dos fios */
+  --lane-gap: 20px;     /* distância entre os fios (o desenho do nó conta com 20px) */
+  --lane-a: calc(var(--year-col) + 1rem);          /* fio vermelho (cuidar) */
+  --lane-b: calc(var(--lane-a) + var(--lane-gap)); /* fio azul (construir) */
+}
+
+@media (max-width: 600px) {
+  :root {
+    --year-col: 4.4rem;
+    --spine-col: 3.6rem;
+  }
+}
